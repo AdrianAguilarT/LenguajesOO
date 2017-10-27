@@ -8,6 +8,10 @@ public class Pregunta {
      ArrayList<Opcion> opcion=new ArrayList<Opcion>();
      String titulo;
 
+    Pregunta(String capital_de_Finlandia, ArrayList<Opcion> opciones1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public ArrayList<Opcion> getOpcion() {
         return opcion;
     }

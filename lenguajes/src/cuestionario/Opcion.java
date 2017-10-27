@@ -4,8 +4,11 @@ package cuestionario;
 public class Opcion {
     String titulo;
     Boolean correcta;
+
+    Opcion(String moscú, boolean b) {
+    }
     
-    public String getTitulo() {
+    public String getTitulo(String titulo) {
         return titulo;
     }
 
