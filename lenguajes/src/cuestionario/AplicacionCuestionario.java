@@ -1,25 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cuestionario;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
-/**
- *
- * @author T-102
- */
 public class AplicacionCuestionario extends javax.swing.JFrame {
-
+    public static int i=0;
     /**
      * Creates new form AplicacionCuestionario
      */
     public AplicacionCuestionario() {
         initComponents();
         nuestroMetodo();
+        
     }
 
     /**
@@ -35,20 +27,30 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         etiquetaTitulo = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
+        sigButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabel1.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bradley Hand", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setText("BIENVENIDO A CLASES DE GEOGRAFÍA");
 
-        etiquetaTitulo.setFont(new java.awt.Font("Gill Sans MT", 0, 16)); // NOI18N
+        etiquetaTitulo.setFont(new java.awt.Font("Chalkboard", 0, 16)); // NOI18N
         etiquetaTitulo.setForeground(new java.awt.Color(240, 240, 240));
         etiquetaTitulo.setText("Éste será el título de la pregunta");
 
+        panelOpciones.setBackground(new java.awt.Color(0, 153, 102));
         panelOpciones.setLayout(new java.awt.GridLayout(4, 1));
+
+        sigButton.setText("Siguiente");
+        sigButton.setToolTipText("");
+        sigButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sigButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,7 +63,11 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(panelOpciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(etiquetaTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sigButton)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +78,9 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
                 .addComponent(etiquetaTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(sigButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,11 +91,17 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sigButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sigButtonMouseClicked
+       if(i<=4){
+       i++;}
+       nuestroMetodo();
+    }//GEN-LAST:event_sigButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -129,9 +143,11 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelOpciones;
+    private javax.swing.JButton sigButton;
     // End of variables declaration//GEN-END:variables
 
     private void nuestroMetodo() {
+        
         //Generamos los RadioButtons
         JRadioButton r1=new JRadioButton("opcion 1");
         JRadioButton r2=new JRadioButton("opcion 2");
@@ -145,6 +161,10 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
         grupo.add(r3);
         grupo.add(r4);
         
+        //Elimina los RadioButtons anteriores
+        if (panelOpciones.getComponentCount()>0)
+            panelOpciones.removeAll();
+        
         //Los agregamos a panelOpciones
         panelOpciones.add(r1);
         panelOpciones.add(r2);
@@ -155,10 +175,10 @@ public class AplicacionCuestionario extends javax.swing.JFrame {
         ArrayList<Pregunta> preguntas=new GeneradorCuestionario().generar();
         
         //Del ArrayList llamado preguntas obtenemos el título de la pregunta
-        etiquetaTitulo.setText(preguntas.get(0).getTitulo()); //get(0) --> Primer Array.
-        r1.setText(preguntas.get(0).getOpcion().get(0).getTitulo());
-        r2.setText(preguntas.get(0).getOpcion().get(1).getTitulo());
-        r3.setText(preguntas.get(0).getOpcion().get(2).getTitulo());
-        r4.setText(preguntas.get(0).getOpcion().get(3).getTitulo());
+        etiquetaTitulo.setText(preguntas.get(i).getTitulo()); //get(0) --> Primer Array.
+        r1.setText(preguntas.get(i).getOpcion().get(0).getTitulo());
+        r2.setText(preguntas.get(i).getOpcion().get(1).getTitulo());
+        r3.setText(preguntas.get(i).getOpcion().get(2).getTitulo());
+        r4.setText(preguntas.get(i).getOpcion().get(3).getTitulo());
     }
 }

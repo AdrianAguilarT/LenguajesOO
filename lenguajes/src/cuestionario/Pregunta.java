@@ -5,12 +5,8 @@ import java.util.ArrayList;
 //import java.util.List;
 
 public class Pregunta {
-     ArrayList<Opcion> opcion=new ArrayList<Opcion>();
-     String titulo;
-
-    Pregunta(String capital_de_Finlandia, ArrayList<Opcion> opciones1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     private ArrayList<Opcion> opcion=new ArrayList<Opcion>();
+     private String titulo;
 
     public ArrayList<Opcion> getOpcion() {
         return opcion;
@@ -28,5 +24,8 @@ public class Pregunta {
         this.titulo = titulo;
     }
      
-     
+    public Pregunta(String titulo, ArrayList<Opcion> opciones) {
+        this.titulo = titulo;
+        this.opcion = opciones;
+    }
 }

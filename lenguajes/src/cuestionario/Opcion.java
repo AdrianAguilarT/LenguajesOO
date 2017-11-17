@@ -2,13 +2,10 @@
 package cuestionario;
 
 public class Opcion {
-    String titulo;
-    Boolean correcta;
-
-    Opcion(String moscú, boolean b) {
-    }
+    private String titulo;
+    private boolean correcta;
     
-    public String getTitulo(String titulo) {
+    public String getTitulo() {
         return titulo;
     }
 
@@ -16,11 +13,16 @@ public class Opcion {
         this.titulo = titulo;
     }
 
-    public Boolean getCorrecta() {
+    public boolean getCorrecta() {
         return correcta;
     }
 
     public void setCorrecta(Boolean correcta) {
         this.correcta = correcta;
+    }
+    
+    public Opcion(String titulo, boolean correcto) {
+        this.titulo = titulo;
+        this.correcta = correcto;
     }
 }
